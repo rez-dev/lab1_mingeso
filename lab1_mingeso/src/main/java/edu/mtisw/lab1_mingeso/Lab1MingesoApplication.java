@@ -1,4 +1,4 @@
-package edu.mtisw.lab1_mingeso.services;
+package edu.mtisw.lab1_mingeso;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
