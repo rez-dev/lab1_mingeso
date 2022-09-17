@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Ingreso de Justificativos</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body><br>
+    <div class="container-sm">
+        <!DOCTYPE HTML>
+        <html xmlns:th="http://www.thymeleaf.org">
+        <head> 
+            <title>My Web App</title> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        </head>
+        <body>
+            <form th:action = "@{/justificacion/guardar}" th:object = ${justificacion} method = "POST" enctype="multipart/form-data">
+              <!-- <div class="form-group">
+                <label for="id">Id</label>
+                <input th:field = "*{id}" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese el id">
+              </div><br> -->
+              <div class="form-group">
+                <label for="fecha">Fecha</label>
+                <input th:field = "*{fecha}" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese la fecha: yyyy/mm/dd">
+              </div><br>
+                <div class="form-group">
+                  <label for="estado">Estado</label>
+                  <input th:field = "*{estado}" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese Estado: 0 o 1">
+                </div><br>
+                <div class="form-group">
+                  <label for="rut">Rut</label>
+                  <input th:field = "*{rut_empleado_justificacion}" type="text" class="form-control" placeholder="Ingrese su rut: 12.345.678-9">
+                </div><br>
+                <button type="submit" class="btn btn-primary">Cargar Datos</button>
+              </form>
+            </div>
+        </body>
+        </html>
+    </div>
+</body>
+</html>

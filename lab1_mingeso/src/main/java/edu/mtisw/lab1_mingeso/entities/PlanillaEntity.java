@@ -2,8 +2,17 @@ package edu.mtisw.lab1_mingeso.entities;
 
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
 @Table(name="planilla")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PlanillaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +28,14 @@ public class PlanillaEntity {
     private int cotizacion_previsional;
     private int cotizacio_salud;
     private int monto_sueldo_final;
+    private int id_categoria_planilla;
 
     //Foranea
+//    @ManyToOne
+//    @JoinColumn(name = "rut_empleado_planilla")
+//    private EmpleadoEntity empleado;
+    // @ManyToOne(fetch=FetchType.LAZY)
+    // @JoinColumn(name="rut_empleado_planilla")
+    // private EmpleadoEntity empleadoEntity;
     private String rut_empleado_planilla;
-    private int id_categoria_planilla;
 }
