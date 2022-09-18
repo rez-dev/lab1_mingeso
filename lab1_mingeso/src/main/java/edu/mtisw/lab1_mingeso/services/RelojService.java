@@ -11,9 +11,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Service
-public class UploadRelojService {
+public class RelojService {
     private String folder = "cargas/relojes/";
-    private final Logger logg = LoggerFactory.getLogger(UploadRelojService.class);
+    private final Logger logg = LoggerFactory.getLogger(RelojService.class);
 
     public String save(MultipartFile file){
         if (!(file.isEmpty())){

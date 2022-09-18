@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
@@ -10,17 +9,19 @@
             rel="stylesheet"
             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
             crossorigin="anonymous">
-    <title>Carga de Arhivos DATA.txt</title>
+    <title>Carga marcas de reloj </title>
 </head>
 <body>
-    <h1>Carga de Archivos</h1>
+    <div th:replace = "/fragments/navbar :: navbar">
+    </div><br>
     <div class = "container">
-        <form th:action = "@{/upload/cargarArchivo}" method = "post" enctype="multipart/form-data">
+        <h1>Carga de marcas de reloj</h1>
+        <form th:action = "@{/reloj/cargarReloj}" method = "post" enctype="multipart/form-data">
             <input type = "file" class = "form-control" name = "archivos">
+            <br>
             <input type = "submit" value = "Carga">
         </form>
         <h3 th:text = "${mensaje}"></h3>
     </div>
-
 </body>
 </html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Ingreso de Autorizacion</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+  <div th:replace = "/fragments/navbar :: navbar">
+  </div><br>
+  <div class="container-sm">
+    <h1 class="h1">Ingresar datos autorización</h1>
+  </div>
+    <div class="container-sm">
+        <!DOCTYPE HTML>
+        <html xmlns:th="http://www.thymeleaf.org">
+        <head> 
+            <title>Ingreso datos autorización</title> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        </head>
+        <body>
+            <form th:action = "@{/autorizacion/guardar}" th:object = ${autorizacion} method = "POST" enctype="multipart/form-data">
+              <!-- <div class="form-group">
+                <label for="id">Id</label>
+                <input th:field = "*{id}" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese el id">
+              </div><br> -->
+                <div class="form-group">
+                    <label for="total_horas">Total horas extras</label>
+                    <input th:field = "*{total_horas}" type="number" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese la cantidad de horas extras">
+                </div><br>
+                <div class="form-group">
+                    <label for="estado">Estado</label>   
+                    <select class="form-control" th:field="*{estado}" required>             
+                    <option value=0>No autorizada</option>             
+                    <option value=1>Autorizada</option>           
+                    </select>  
+                </div><br>
+                <div class="form-group">
+                  <label for="rut">Rut</label>
+                  <input th:field = "*{rut_empleado_autorizacion}" type="text" class="form-control" placeholder="Ingrese su rut: 12.345.678-9">
+                </div><br>
+                <button type="submit" class="btn btn-primary">Cargar Datos</button>
+              </form>
+            </div>
+        </body>
+        </html>
+    </div>
+</body>
+</html>

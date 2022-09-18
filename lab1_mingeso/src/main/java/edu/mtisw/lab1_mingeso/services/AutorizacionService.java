@@ -6,29 +6,29 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import edu.mtisw.lab1_mingeso.entities.JustificacionEntity;
-import edu.mtisw.lab1_mingeso.repositories.JustificacionRepository;
+import edu.mtisw.lab1_mingeso.entities.AutorizacionEntity;
+import edu.mtisw.lab1_mingeso.repositories.AutorizacionRepository;
 
 @Service
-public class JustificacionService {
+public class AutorizacionService {
     @Autowired
-    JustificacionRepository justificacionRepository;
+    AutorizacionRepository autorizacionRepository;
 
-    public ArrayList<JustificacionEntity> obtenerJustificaciones() {
-        return (ArrayList<JustificacionEntity>) justificacionRepository.findAll();
+    public ArrayList<AutorizacionEntity> obtenerAutorizaciones() {
+        return (ArrayList<AutorizacionEntity>) autorizacionRepository.findAll();
     }
 
-    public void guardarJustificacion(JustificacionEntity justificacion) {
-        justificacionRepository.save(justificacion);
+    public void guardarAutorizacion(AutorizacionEntity autorizacion) {
+        autorizacionRepository.save(autorizacion);
     }
 
-    private String folder = "cargas/justificaciones/";
+    private String folder = "cargas/autorizaciones/";
     private final Logger logg = LoggerFactory.getLogger(RelojService.class);
 
     public String save(MultipartFile file){

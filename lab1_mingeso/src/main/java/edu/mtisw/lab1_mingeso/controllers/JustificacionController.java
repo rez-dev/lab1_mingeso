@@ -29,21 +29,33 @@ public class JustificacionController {
         ArrayList<JustificacionEntity>justificaciones=justificacionService.obtenerJustificaciones();
         System.out.println(justificaciones);
         model.addAttribute("justificaciones",justificaciones);
-        return "index";
+        return "justificaciones/listadoJustificacion";
     }
 
     @GetMapping("/nuevo")
     public String nuevo(Model model){
         model.addAttribute("justificacion",new JustificacionEntity());
-        return "formJustificacion";
+        return "justificaciones/formJustificacion";
     }
 
+
     @PostMapping("/guardar")
-    public String crear(JustificacionEntity justificacion, @RequestParam("archivos") MultipartFile file, RedirectAttributes ms){
+    public String guardar(JustificacionEntity justificacion, RedirectAttributes attributes){
         justificacionService.guardarJustificacion(justificacion);
+        attributes.addFlashAttribute("mensaje","Justificacion guardada");
+        return "redirect:/justificacion/listar";
+    }
+
+    @GetMapping("/subirJustificacion")
+    public String subirJustificacion(Model model){
+        return "justificaciones/subirJustificacion";
+    }
+
+    @PostMapping("/cargarJustificacion")
+    public String carga(@RequestParam("archivos") MultipartFile file, RedirectAttributes ms){
         justificacionService.save(file);
         ms.addFlashAttribute("mensaje", "Archivo guardado correctamente");
-        return "redirect:/justificacion/listar";
+        return "redirect:/justificacion/subirJustificacion";
     }
 
     // @GetMapping("/editar/{id}")

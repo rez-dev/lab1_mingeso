@@ -5,12 +5,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
-<body><br>
+<body>
+  <div th:replace = "/fragments/navbar :: navbar">
+  </div><br>
+  <div class="container-sm">
+    <h1 class="h1">Ingresar datos justificación</h1>
+  </div>
     <div class="container-sm">
         <!DOCTYPE HTML>
         <html xmlns:th="http://www.thymeleaf.org">
         <head> 
-            <title>My Web App</title> 
+            <title>Ingresar datos justificaciónp</title> 
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         </head>
@@ -22,11 +27,14 @@
               </div><br> -->
               <div class="form-group">
                 <label for="fecha">Fecha</label>
-                <input th:field = "*{fecha}" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese la fecha: yyyy/mm/dd">
+                <input th:field = "*{fecha}" type="date" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese la fecha: yyyy/mm/dd">
               </div><br>
                 <div class="form-group">
-                  <label for="estado">Estado</label>
-                  <input th:field = "*{estado}" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese Estado: 0 o 1">
+                  <label for="estado">Estado</label>   
+                  <select class="form-control" th:field="*{estado}" required>             
+                  <option value=0>No justificada</option>             
+                  <option value=1>Justificada</option>           
+                  </select> 
                 </div><br>
                 <div class="form-group">
                   <label for="rut">Rut</label>

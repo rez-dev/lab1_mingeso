@@ -1,6 +1,6 @@
 package edu.mtisw.lab1_mingeso.controllers;
 
-import edu.mtisw.lab1_mingeso.services.UploadRelojService;
+import edu.mtisw.lab1_mingeso.services.RelojService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,20 +11,20 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/upload")
-public class UploadRelojController {
+@RequestMapping("/reloj")
+public class RelojController {
     @Autowired//Se le dice a spring que se le va a inyectar carga de servicio
-    private UploadRelojService uploadRelojService;
+    private RelojService relojService;
 
-    @GetMapping("/subirData")
-    public String home(){
-        return "home";
+    @GetMapping("/subirReloj")
+    public String subirReloj(){
+        return "relojes/subirReloj";
     }
 
-    @PostMapping("/cargarArchivo")
+    @PostMapping("/cargarReloj")
     public String carga(@RequestParam("archivos") MultipartFile file, RedirectAttributes ms){
-        uploadRelojService.save(file);
+        relojService.save(file);
         ms.addFlashAttribute("mensaje", "Archivo guardado correctamente");
-        return "redirect:/upload/subirData";
+        return "redirect:/reloj/subirReloj";
     }
 }
