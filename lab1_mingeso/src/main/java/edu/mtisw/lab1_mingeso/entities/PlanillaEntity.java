@@ -22,6 +22,7 @@ public class PlanillaEntity {
     private String nombre_completo;
     private int agnos_servicio;
     private int monto_bono_agnos_servicio;
+    private int sueldo_fijo_mensual;
     private int monto_bonos_horas_extras;
     private int monto_descuentos;
     private int sueldo_bruto;

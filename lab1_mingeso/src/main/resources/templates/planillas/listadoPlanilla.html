@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Listado Justificaciones</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+	<div th:replace = "/fragments/navbar :: navbar">
+	</div>
+	<div class="container-sm">
+		<h1 class="h1">Listado de planillas</h1>
+	</div>
+    <div class="container-sm">
+    	<table class="table">
+    		<thead class="thead-dark">
+    			<tr>
+                    <th>Rut</th>
+	    			<th>Nombre Empleado</th>
+	    			<th>Categoria</th>
+					<th>Años de Servicio</th>
+                    <th>Sueldo Fijo Mensual</th>
+                    <th>Bonificación Años Servicio</th>
+                    <th>Monto Horas Extras</th>
+                    <th>Monto Descuentos</th>
+                    <th>Sueldo Bruto</th>
+                    <th>Cotización Previsional</th>
+                    <th>Cotización Salud</th>
+                    <th>Sueldo Final</th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    			<tr th:each="planilla:${planillas}">
+    				<td th:text="${planilla.rut_empleado_planilla}"></td>
+    				<td th:text="${planilla.nombre_completo}"></td>
+                    <td th:text="${planilla.id_categoria_planilla}"></td>
+                    <td th:text="${planilla.agnos_servicio}"></td>
+                    <td th:text="${planilla.sueldo_fijo_mensual}"></td>
+                    <td th:text="${planilla.monto_bono_agnos_servicio}"></td>
+                    <td th:text="${planilla.monto_bonos_horas_extras}"></td>
+                    <td th:text="${planilla.monto_descuentos}"></td>
+                    <td th:text="${planilla.sueldo_bruto}"></td>
+                    <td th:text="${planilla.cotizacion_previsional}"></td>
+                    <td th:text="${planilla.cotizacio_salud}"></td>
+    				<td th:text="${planilla.monto_sueldo_final}"></td>
+    				<!-- <td>
+    					<a class="btn btn-primary" href="#" role="button">Editar</a>
+    					<a class="btn btn-danger" href="#" role="button">Eliminar</a>
+    				</td> -->
+    			</tr>
+    		</tbody>
+    	</table>
+    </div>
+</body>
+</html>

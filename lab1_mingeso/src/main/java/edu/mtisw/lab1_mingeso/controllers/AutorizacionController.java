@@ -24,7 +24,7 @@ public class AutorizacionController {
     @GetMapping("/listar")
     public String listar(Model model){
         ArrayList<AutorizacionEntity>autorizaciones=autorizacionService.obtenerAutorizaciones();
-        System.out.println(autorizaciones);
+        //System.out.println(autorizaciones);
         model.addAttribute("autorizaciones",autorizaciones);
         return "autorizaciones/listadoAutorizacion";
     }
