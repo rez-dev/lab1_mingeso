@@ -17,9 +17,9 @@ public class AutorizacionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private int id;
+    private Long id;
 
-    private int total_horas;
+    //private int total_horas;
     private int estado;
 
     //Foranea

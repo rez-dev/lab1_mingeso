@@ -45,4 +45,8 @@ public class AutorizacionService {
         }
         return "Archivo guardado correctamente";
     }
+
+    public ArrayList<AutorizacionEntity> findAutorizacionbyRut(String rut){
+        return (ArrayList<AutorizacionEntity>) autorizacionRepository.findAutorizacionbyRut(rut);
+    }
 }

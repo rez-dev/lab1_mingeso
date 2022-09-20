@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Listado Relojes</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+	<div th:replace = "/fragments/navbar :: navbar">
+	</div>
+	<div class="container-sm">
+		<h1 class="h1">Listado de relojes por rut</h1>
+		<a class="btn btn-primary" th:href="@{/reloj/}" type="button">Probar Calcular Atrasos</a>
+	</div>
+    <div class="container-sm">
+    	<table class="table">
+    		<thead class="thead-dark">
+    			<tr>
+	    			<th>Id</th>
+	    			<th>Fecha</th>
+					<th>Hora</th>
+					<th>Rut</th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    			<tr th:each="reloj:${relojes}">
+    				<td th:text="${reloj.id}"></td>
+    				<td th:text="${reloj.fecha}"></td>
+    				<td th:text="${reloj.hora}"></td>
+					<td th:text="${reloj.rut_empleado_reloj}"></td>
+    				<td>
+    					<a class="btn btn-primary" href="#" role="button">Editar</a>
+    					<a class="btn btn-danger" href="#" role="button">Eliminar</a>
+    				</td>
+    			</tr>
+    		</tbody>
+    	</table>
+    </div>
+</body>
+</html>

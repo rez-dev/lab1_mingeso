@@ -17,10 +17,10 @@ public class JustificacionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private int id;
+    private Long id;
 
     private String fecha;
-    private int estado;
+    Long estado;
 
     //Foranea
 //    @ManyToOne

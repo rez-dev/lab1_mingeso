@@ -45,4 +45,8 @@ public class JustificacionService {
         }
         return "Archivo guardado correctamente";
     }
+
+    public ArrayList<JustificacionEntity> findJustificacionbyRutAndFecha(String rut, String fecha){
+        return (ArrayList<JustificacionEntity>) justificacionRepository.findJustificacionbyRutAndFecha(rut, fecha);
+    }
 }
