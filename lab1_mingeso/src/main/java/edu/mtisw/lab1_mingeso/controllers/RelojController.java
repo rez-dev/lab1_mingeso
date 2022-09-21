@@ -40,6 +40,7 @@ public class RelojController {
     public String carga(@RequestParam("archivos") MultipartFile file, RedirectAttributes ms) throws IOException{
         relojService.save(file);
         ms.addFlashAttribute("mensaje", "Archivo guardado correctamente");
+        relojService.eliminarTodosLosRelojes();
         relojService.obtenerReloj();
         return "redirect:/reloj/subirReloj";
     }
@@ -56,12 +57,16 @@ public class RelojController {
     public String calcularHoras(@PathVariable String rut, Model model) throws ParseException{
         //ArrayList<RelojEntity>relojes = relojService.obtenerRelojPorRut(rut);
         EmpleadoEntity empleado = empleadoService.obtenerEmpleadoPorRut(rut);
+        int sueldoFijoMensual = rrhhService.calcularSueldoFijoMensual(empleado);
         int descuentoAtrasos = rrhhService.calcularDescuentosAtrasos(empleado);
-        int horaExtras = rrhhService.calcularHorasExtras(empleado);
         int montoHorasExtras = rrhhService.calcularMontoHorasExtras(empleado);
-        System.out.println(descuentoAtrasos);
-        System.out.println(horaExtras);
-        System.out.println(montoHorasExtras);
+        int montoAgnosServicio = rrhhService.calcularMontoAgnosServicio(empleado);
+        int sueldoFinal = rrhhService.calcularSueldoFinal(empleado);
+        // System.out.println(sueldoFijoMensual);
+        // System.out.println(descuentoAtrasos);
+        // System.out.println(montoHorasExtras);
+        // System.out.println(montoAgnosServicio);
+        System.out.println("Sueldo Final " + sueldoFinal);
         return "redirect:/reloj/subirReloj";
     }
 }

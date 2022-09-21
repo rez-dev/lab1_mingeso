@@ -17,6 +17,11 @@ public class PlanillaService {
         return (ArrayList<PlanillaEntity>) planillaRepository.findAll();
     }
 
-    
-    
+    public void guardarPlanilla(PlanillaEntity planilla) {
+        planillaRepository.save(planilla);
+    }
+
+    public void eliminarTodasLasPlanillas() {
+        planillaRepository.deleteAll();
+    }
 }

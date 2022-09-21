@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import edu.mtisw.lab1_mingeso.entities.AutorizacionEntity;
 import edu.mtisw.lab1_mingeso.entities.EmpleadoEntity;
 import edu.mtisw.lab1_mingeso.entities.JustificacionEntity;
+import edu.mtisw.lab1_mingeso.entities.PlanillaEntity;
 import edu.mtisw.lab1_mingeso.entities.RelojEntity;
 @Service
 public class RRHHService {
@@ -48,15 +49,21 @@ public class RRHHService {
             return 0;}
     }
 
-    //Calcula los años de servicio de un empleado
-    //Fixear
-    public int calcularMontoAgnosServicio(EmpleadoEntity empleado) throws ParseException{
+    //Calcular agnos de servicio
+    public int calcularAgnosDeServicio(EmpleadoEntity empleado) throws ParseException{
         LocalDateTime now = LocalDateTime.now();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date fechaIngreso = formatter.parse(empleado.getFecha_ingreso_empresa());
         LocalDate fechaIngresoLocal = fechaIngreso.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
         Period periodo = Period.between(fechaIngresoLocal, now.toLocalDate());
         int agnosServicio = periodo.getYears();
+
+        return agnosServicio;
+    }
+
+    //Calcula el bono por agnos de servicio de un empleado
+    public int calcularMontoAgnosServicio(EmpleadoEntity empleado) throws ParseException{
+        int agnosServicio = calcularAgnosDeServicio(empleado);
 
         if(agnosServicio < 5){
             return 0;}
@@ -115,7 +122,11 @@ public class RRHHService {
                 //System.out.println(fechaNuevoFormato);
 
                 ArrayList<JustificacionEntity> justificaciones= justificacionService.findJustificacionbyRutAndFecha(empleado.getRut(), fechaNuevoFormato);
-                if(justificaciones.get(0).getEstado() == 0){
+                if(justificaciones.size() != 0){
+                    if(justificaciones.get(0).getEstado() == 0){
+                        montoDescuento = montoDescuento + (int)(0.15 * calcularSueldoFijoMensual(empleado));
+                    }
+                }else{
                     montoDescuento = montoDescuento + (int)(0.15 * calcularSueldoFijoMensual(empleado));}
             }
         }
@@ -125,9 +136,7 @@ public class RRHHService {
 
     public int calcularHorasExtras(EmpleadoEntity empleado) throws ParseException{
         int cantidadHorasExtras = 0;
-        int horasAutorizadas = 0;
         long cantidadMinutosExtras = 0;
-        int montoHorasExtras = 0;
 
         String HORA_SALIDA = "18:00";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
@@ -155,10 +164,9 @@ public class RRHHService {
             return 0;
         }
         if(autorizaciones.get(0).getEstado() == 0){
-            horasAutorizadas = 0;
-        }else{
-            horasAutorizadas = cantidadHorasExtras;}
-        return horasAutorizadas;
+            cantidadHorasExtras = 0;
+        }
+        return cantidadHorasExtras;
     }
 
     public int calcularMontoHorasExtras(EmpleadoEntity empleado) throws ParseException{
@@ -173,5 +181,46 @@ public class RRHHService {
             montoHorasExtras = 0;}
         return montoHorasExtras;
     }
+
+    public int calcularSueldoBruto(EmpleadoEntity empleado) throws ParseException{
+        int sueldoBruto = calcularSueldoFijoMensual(empleado) + calcularMontoAgnosServicio(empleado) 
+        + calcularMontoHorasExtras(empleado) - calcularDescuentosAtrasos(empleado);
+        return sueldoBruto;
+    }
+
+    public int calcularCotizacionPrevisional(EmpleadoEntity empleado) throws ParseException{
+        int cotizacionPrevisional = (int) (0.1 * calcularSueldoBruto(empleado));
+        return cotizacionPrevisional;
+    }
+
+    public int calcularCotizacionSalud(EmpleadoEntity empleado) throws ParseException{
+        int cotizacionSalud = (int) (0.08 * calcularSueldoBruto(empleado));
+        return cotizacionSalud;
+    }
+
+    public int calcularSueldoFinal(EmpleadoEntity empleado) throws ParseException{
+        int sueldoFinal = calcularSueldoBruto(empleado) - calcularCotizacionPrevisional(empleado) 
+        - calcularCotizacionSalud(empleado);
+        return sueldoFinal;
+    }
+
+    public PlanillaEntity crearPlanilla(EmpleadoEntity empleado) throws ParseException{
+        PlanillaEntity planilla = new PlanillaEntity();
+        planilla.setRut_empleado_planilla(empleado.getRut());
+        planilla.setNombre_completo(empleado.getNombres());
+        planilla.setId_categoria_planilla(empleado.getId_categoria());
+        planilla.setAgnos_servicio(calcularAgnosDeServicio(empleado));
+        planilla.setSueldo_fijo_mensual(calcularSueldoFijoMensual(empleado));
+        planilla.setMonto_bono_agnos_servicio(calcularMontoAgnosServicio(empleado));
+        planilla.setMonto_bonos_horas_extras(calcularMontoHorasExtras(empleado));
+        planilla.setMonto_descuentos(calcularDescuentosAtrasos(empleado));
+        planilla.setSueldo_bruto(calcularSueldoBruto(empleado));
+        planilla.setCotizacion_previsional(calcularCotizacionPrevisional(empleado));
+        planilla.setCotizacio_salud(calcularCotizacionSalud(empleado));
+        planilla.setMonto_sueldo_final(calcularSueldoFinal(empleado));
+        return planilla;
+    }
+
+
 }
 

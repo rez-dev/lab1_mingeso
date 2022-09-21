@@ -16,10 +16,11 @@
     </div><br>
     <div class = "container">
         <h1>Carga de documento de autorización</h1>
+        <br>
         <form th:action = "@{/autorizacion/cargarAutorizacion}" method = "post" enctype="multipart/form-data">
             <input type = "file" class = "form-control" name = "archivos">
             <br>
-            <input type = "submit" value = "Carga">
+            <button type="submit" class="btn btn-primary">Cargar Datos</button>
         </form>
         <h3 th:text = "${mensaje}"></h3>
     </div>

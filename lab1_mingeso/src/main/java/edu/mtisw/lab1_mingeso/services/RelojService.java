@@ -10,7 +10,6 @@ import edu.mtisw.lab1_mingeso.entities.RelojEntity;
 import edu.mtisw.lab1_mingeso.repositories.RelojRepository;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,6 +24,10 @@ public class RelojService {
 
     public void guardarReloj(RelojEntity reloj) {
         relojRepository.save(reloj);
+    }
+
+    public void eliminarTodosLosRelojes() {
+        relojRepository.deleteAll();
     }
 
     private String folder = "cargas/relojes/";
