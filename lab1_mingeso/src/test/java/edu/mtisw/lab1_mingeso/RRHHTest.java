@@ -3,14 +3,11 @@ package edu.mtisw.lab1_mingeso;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.mtisw.lab1_mingeso.entities.EmpleadoEntity;
-import edu.mtisw.lab1_mingeso.entities.RelojEntity;
 import edu.mtisw.lab1_mingeso.repositories.RelojRepository;
 import edu.mtisw.lab1_mingeso.services.RRHHService;
 import edu.mtisw.lab1_mingeso.services.RelojService;
@@ -36,6 +33,71 @@ public class RRHHTest {
     }
 
     @Test
+    void calcularSueldoFijoMensualCategoriaDesconocida(){
+        empleado.setRut("20.244.554-3");
+        empleado.setNombres("Juan Pablo");
+        empleado.setApellidos("Gonzalez Ramirez");
+        empleado.setFecha_nacimiento("1998-10-10");
+        empleado.setFecha_ingreso_empresa("2020-10-10");
+        empleado.setId_categoria(5);
+
+        int sueldoFijoMensual = rrhh.calcularSueldoFijoMensual(empleado);
+        assertEquals(0, sueldoFijoMensual,0.0);
+    }
+
+    @Test
+    void getMontoHorasExtras(){
+        empleado.setRut("20.244.554-3");
+        empleado.setNombres("Juan Pablo");
+        empleado.setApellidos("Gonzalez Ramirez");
+        empleado.setFecha_nacimiento("1998-10-10");
+        empleado.setFecha_ingreso_empresa("2020-10-10");
+        empleado.setId_categoria(1);
+
+        int montoHorasExtras = rrhh.getMontoPorHoraExtra(empleado);
+        assertEquals(25000, montoHorasExtras,0.0);
+    }
+
+    @Test
+    void getMontoHorasExtrasCategoriaDesconocida(){
+        empleado.setRut("20.244.554-3");
+        empleado.setNombres("Juan Pablo");
+        empleado.setApellidos("Gonzalez Ramirez");
+        empleado.setFecha_nacimiento("1998-10-10");
+        empleado.setFecha_ingreso_empresa("2020-10-10");
+        empleado.setId_categoria(5);
+
+        int montoHorasExtras = rrhh.getMontoPorHoraExtra(empleado);
+        assertEquals(0, montoHorasExtras,0.0);
+    }
+
+    @Test
+    void calcularAgnosDeServicio() throws ParseException{
+        empleado.setRut("20.244.554-3");
+        empleado.setNombres("Juan Pablo");
+        empleado.setApellidos("Gonzalez Ramirez");
+        empleado.setFecha_nacimiento("1998-10-10");
+        empleado.setFecha_ingreso_empresa("2000-10-10");
+        empleado.setId_categoria(1);
+
+        int agnosDeServicio = rrhh.calcularAgnosDeServicio(empleado);
+        assertEquals(21, agnosDeServicio,0.0);
+    }
+
+    @Test
+    void calcularAgnosDeServicioFechaIngresoIncorrecta() throws ParseException{
+        empleado.setRut("20.244.554-3");
+        empleado.setNombres("Juan Pablo");
+        empleado.setApellidos("Gonzalez Ramirez");
+        empleado.setFecha_nacimiento("1998-10-10");
+        empleado.setFecha_ingreso_empresa("0000-00-00");
+        empleado.setId_categoria(1);
+
+        int agnosDeServicio = rrhh.calcularAgnosDeServicio(empleado);
+        assertEquals(0, agnosDeServicio,0.0);
+    }
+
+    @Test
     void calcularMontoAgnosServicio() throws Exception{
         empleado.setRut("20.244.554-3");
         empleado.setNombres("Juan Pablo");
@@ -49,19 +111,25 @@ public class RRHHTest {
         assertEquals(85000, montoAgnosServicio,0.0);
     }
 
+    @Test
+    void calcularMontoAgnosServicioFechaIngresoIncorrecta() throws Exception{
+        empleado.setRut("20.244.554-3");
+        empleado.setNombres("Juan Pablo");
+        empleado.setApellidos("Gonzalez Ramirez");
+        empleado.setFecha_nacimiento("1998-10-10");
+        empleado.setFecha_ingreso_empresa("0000-00-00");
+        empleado.setId_categoria(1);
 
-    // @Test
-    // void calcularDescuentoAtraso() throws ParseException{
-    //     empleado.setRut("20.457.671-9");
-    //     empleado.setNombres("Juan Pablo");
-    //     empleado.setApellidos("Gonzalez Ramirez");
-    //     empleado.setFecha_nacimiento("1998-10-10");
-    //     empleado.setFecha_ingreso_empresa("2020-10-10");
-    //     empleado.setId_categoria(1);
+        int montoAgnosServicio = rrhh.calcularMontoAgnosServicio(empleado);
+        assertEquals(0, montoAgnosServicio,0.0);
+    }
 
-    //     ArrayList<RelojEntity>relojes = relojService.obtenerRelojPorRut(null);
+    //CALCULAR DESCUENTOS ATRASOS
+    //CALCULAR HORAS EXTRAS
+    //CALCULAR MONTO HORAS EXTRAS
 
-    //     int descuentoAtraso = rrhh.verificarAtrasos(empleado,relojes);
-    //     assertEquals(0, descuentoAtraso,0.0);
-    // }
+    //CALCULAR SUELDO BRUTO
+    //CALCULAR COTIZACION PREVISIONAL
+    //CALCULAR COTIZACION SALUD
+    //CALCULAR SUELDO FINAL
 }

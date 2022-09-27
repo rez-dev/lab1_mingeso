@@ -58,6 +58,9 @@ public class RRHHService {
         Period periodo = Period.between(fechaIngresoLocal, now.toLocalDate());
         int agnosServicio = periodo.getYears();
 
+        if(agnosServicio > 100){
+            agnosServicio = 0;
+        }
         return agnosServicio;
     }
 
@@ -220,7 +223,5 @@ public class RRHHService {
         planilla.setMonto_sueldo_final(calcularSueldoFinal(empleado));
         return planilla;
     }
-
-
 }
 

@@ -57,10 +57,10 @@ public class RelojController {
     public String calcularHoras(@PathVariable String rut, Model model) throws ParseException{
         //ArrayList<RelojEntity>relojes = relojService.obtenerRelojPorRut(rut);
         EmpleadoEntity empleado = empleadoService.obtenerEmpleadoPorRut(rut);
-        int sueldoFijoMensual = rrhhService.calcularSueldoFijoMensual(empleado);
-        int descuentoAtrasos = rrhhService.calcularDescuentosAtrasos(empleado);
-        int montoHorasExtras = rrhhService.calcularMontoHorasExtras(empleado);
-        int montoAgnosServicio = rrhhService.calcularMontoAgnosServicio(empleado);
+        // int sueldoFijoMensual = rrhhService.calcularSueldoFijoMensual(empleado);
+        // int descuentoAtrasos = rrhhService.calcularDescuentosAtrasos(empleado);
+        // int montoHorasExtras = rrhhService.calcularMontoHorasExtras(empleado);
+        // int montoAgnosServicio = rrhhService.calcularMontoAgnosServicio(empleado);
         int sueldoFinal = rrhhService.calcularSueldoFinal(empleado);
         // System.out.println(sueldoFijoMensual);
         // System.out.println(descuentoAtrasos);

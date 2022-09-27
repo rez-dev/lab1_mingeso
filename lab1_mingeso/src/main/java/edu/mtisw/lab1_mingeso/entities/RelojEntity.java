@@ -5,12 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.StringTokenizer;
 
 @Entity
 @Table(name="reloj")
