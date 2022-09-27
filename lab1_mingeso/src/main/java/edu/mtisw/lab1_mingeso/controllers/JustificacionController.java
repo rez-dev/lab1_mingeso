@@ -24,6 +24,11 @@ public class JustificacionController {
     @Autowired
     JustificacionService justificacionService;
 
+    @GetMapping("/home")
+    public String home(){
+        return "/justificaciones/homeJustificacion";
+    }
+
     @GetMapping("/listar")
     public String listar(Model model){
         ArrayList<JustificacionEntity>justificaciones=justificacionService.obtenerJustificaciones();

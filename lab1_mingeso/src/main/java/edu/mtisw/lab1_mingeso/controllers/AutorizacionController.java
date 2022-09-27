@@ -21,6 +21,11 @@ public class AutorizacionController {
     @Autowired
     AutorizacionService autorizacionService;
 
+    @GetMapping("/home")
+    public String home(){
+        return "/autorizaciones/homeAutorizacion";
+    }
+
     @GetMapping("/listar")
     public String listar(Model model){
         ArrayList<AutorizacionEntity>autorizaciones=autorizacionService.obtenerAutorizaciones();

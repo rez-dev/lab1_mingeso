@@ -35,7 +35,7 @@ public class PlanillaController {
 
     @GetMapping("/home")
     public String home(){
-        return "/planillas/home";
+        return "/planillas/homePlanilla";
     }
 
     @GetMapping("/calcularPlanillas")
