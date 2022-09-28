@@ -18,14 +18,8 @@ public class JustificacionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-
     private String fecha;
-    Long estado;
-
-    //Foranea
-//    @ManyToOne
-//    @JoinColumn(name = "rut_empleado_justificacion")
-//    private EmpleadoEntity empleado;
+    private Long estado;
     private String rut_empleado_justificacion;
 
 }

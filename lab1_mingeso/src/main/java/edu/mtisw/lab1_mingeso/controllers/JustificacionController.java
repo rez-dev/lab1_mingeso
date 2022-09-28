@@ -60,18 +60,4 @@ public class JustificacionController {
         ms.addFlashAttribute("mensaje", "Archivo guardado correctamente");
         return "redirect:/justificacion/subirJustificacion";
     }
-
-    // @GetMapping("/editar/{id}")
-    // public String editar(@PathVariable int id, Model model){
-    //     Optional<JustificacionEntity> justificacion=justificacionService.obtenerPorId(id);
-    //     model.addAttribute("justificacion",justificacion);
-    //     return "form";
-
-    // }
-
-    // @GetMapping("/eliminar/{id}")
-    // public String eliminar(@PathVariable int id){
-    //     justificacionService.eliminarJustificacion(id);
-    //     return "redirect:/justificacion/listar";
-    // }
 }

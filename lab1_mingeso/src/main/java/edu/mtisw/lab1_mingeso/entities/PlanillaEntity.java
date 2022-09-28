@@ -18,7 +18,6 @@ public class PlanillaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-
     private String nombre_completo;
     private int agnos_servicio;
     private int monto_bono_agnos_servicio;
@@ -30,13 +29,5 @@ public class PlanillaEntity {
     private int cotizacio_salud;
     private int monto_sueldo_final;
     private int id_categoria_planilla;
-
-    //Foranea
-//    @ManyToOne
-//    @JoinColumn(name = "rut_empleado_planilla")
-//    private EmpleadoEntity empleado;
-    // @ManyToOne(fetch=FetchType.LAZY)
-    // @JoinColumn(name="rut_empleado_planilla")
-    // private EmpleadoEntity empleadoEntity;
     private String rut_empleado_planilla;
 }

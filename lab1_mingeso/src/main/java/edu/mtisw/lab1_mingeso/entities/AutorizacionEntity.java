@@ -18,13 +18,6 @@ public class AutorizacionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-
-    //private int total_horas;
     private int estado;
-
-    //Foranea
-//    @ManyToOne
-//    @JoinColumn(name = "rut_empleado_autorizacion")
-//    private EmpleadoEntity empleado;
     private String rut_empleado_autorizacion;
 }
