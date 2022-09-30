@@ -1,6 +1,8 @@
 package edu.mtisw.lab1_mingeso.controllers;
 
+import edu.mtisw.lab1_mingeso.entities.AutorizacionEntity;
 import edu.mtisw.lab1_mingeso.entities.EmpleadoEntity;
+import edu.mtisw.lab1_mingeso.entities.JustificacionEntity;
 import edu.mtisw.lab1_mingeso.entities.RelojEntity;
 import edu.mtisw.lab1_mingeso.services.EmpleadoService;
 import edu.mtisw.lab1_mingeso.services.RRHHService;
@@ -61,7 +63,10 @@ public class RelojController {
         // int descuentoAtrasos = rrhhService.calcularDescuentosAtrasos(empleado);
         // int montoHorasExtras = rrhhService.calcularMontoHorasExtras(empleado);
         // int montoAgnosServicio = rrhhService.calcularMontoAgnosServicio(empleado);
-        int sueldoFinal = rrhhService.calcularSueldoFinal(empleado);
+        ArrayList<RelojEntity> relojes = relojService.obtenerRelojPorRut(empleado.getRut());
+        ArrayList<JustificacionEntity> justificaciones = new ArrayList<JustificacionEntity>();
+        ArrayList<AutorizacionEntity> autorizaciones = new ArrayList<AutorizacionEntity>();
+        int sueldoFinal = rrhhService.calcularSueldoFinal(empleado,relojes,justificaciones,autorizaciones);
         // System.out.println(sueldoFijoMensual);
         // System.out.println(descuentoAtrasos);
         // System.out.println(montoHorasExtras);

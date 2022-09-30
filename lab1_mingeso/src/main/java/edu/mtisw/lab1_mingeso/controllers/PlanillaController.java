@@ -9,11 +9,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import edu.mtisw.lab1_mingeso.entities.AutorizacionEntity;
 import edu.mtisw.lab1_mingeso.entities.EmpleadoEntity;
+import edu.mtisw.lab1_mingeso.entities.JustificacionEntity;
 import edu.mtisw.lab1_mingeso.entities.PlanillaEntity;
+import edu.mtisw.lab1_mingeso.entities.RelojEntity;
+import edu.mtisw.lab1_mingeso.services.AutorizacionService;
 import edu.mtisw.lab1_mingeso.services.EmpleadoService;
+import edu.mtisw.lab1_mingeso.services.JustificacionService;
 import edu.mtisw.lab1_mingeso.services.PlanillaService;
 import edu.mtisw.lab1_mingeso.services.RRHHService;
+import edu.mtisw.lab1_mingeso.services.RelojService;
 
 @Controller
 @RequestMapping("/planilla")
@@ -24,6 +30,12 @@ public class PlanillaController {
     EmpleadoService empleadoService;
     @Autowired
     RRHHService rrhhService;
+    @Autowired
+    RelojService relojService;
+    @Autowired
+    JustificacionService justificacionService;
+    @Autowired
+    AutorizacionService autorizacionService;
 
     @GetMapping("/listar")
     public String listar(Model model){
@@ -42,7 +54,10 @@ public class PlanillaController {
         ArrayList<EmpleadoEntity> empleados = empleadoService.obtenerEmpleados();
         planillaService.eliminarTodasLasPlanillas();
         for (EmpleadoEntity empleado : empleados) {
-            PlanillaEntity planilla = rrhhService.crearPlanilla(empleado);
+            ArrayList<RelojEntity> relojes = relojService.obtenerRelojPorRut(empleado.getRut());
+            ArrayList<JustificacionEntity> justificaciones = justificacionService.findAllByRut(empleado.getRut());
+            ArrayList<AutorizacionEntity> autorizaciones = autorizacionService.findAutorizacionbyRut(empleado.getRut());
+            PlanillaEntity planilla = rrhhService.crearPlanilla(empleado,relojes,justificaciones,autorizaciones);
             planillaService.guardarPlanilla(planilla);
         }
         return "redirect:/planilla/home";

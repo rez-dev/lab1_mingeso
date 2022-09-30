@@ -49,4 +49,8 @@ public class JustificacionService {
     public ArrayList<JustificacionEntity> findJustificacionbyRutAndFecha(String rut, String fecha){
         return (ArrayList<JustificacionEntity>) justificacionRepository.findJustificacionbyRutAndFecha(rut, fecha);
     }
+
+    public ArrayList<JustificacionEntity> findAllByRut(String rut){
+        return (ArrayList<JustificacionEntity>) justificacionRepository.findAllByRut(rut);
+    }
 }

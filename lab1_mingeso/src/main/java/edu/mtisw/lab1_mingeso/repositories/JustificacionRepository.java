@@ -14,4 +14,7 @@ public interface JustificacionRepository extends JpaRepository<JustificacionEnti
     //findEstadobyRutAndFecha
     @Query(value = "select * from justificacion as j where j.rut_empleado_justificacion = :rut and j.fecha = :fecha", nativeQuery = true)
     ArrayList<JustificacionEntity> findJustificacionbyRutAndFecha(@Param("rut") String rut, @Param("fecha") String fecha);
+
+    @Query(value = "select * from justificacion as j where j.rut_empleado_justificacion = :rut", nativeQuery = true)
+    ArrayList<JustificacionEntity> findAllByRut(@Param("rut") String rut);
 }
