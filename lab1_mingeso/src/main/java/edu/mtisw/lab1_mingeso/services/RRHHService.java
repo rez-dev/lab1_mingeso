@@ -218,7 +218,7 @@ public class RRHHService {
     public PlanillaEntity crearPlanilla(EmpleadoEntity empleado,ArrayList<RelojEntity> relojes,ArrayList<JustificacionEntity> justificaciones,ArrayList<AutorizacionEntity> autorizaciones) throws ParseException{
         PlanillaEntity planilla = new PlanillaEntity();
         planilla.setRut_empleado_planilla(empleado.getRut());
-        planilla.setNombre_completo(empleado.getNombres() + empleado.getApellidos());
+        planilla.setNombre_completo(empleado.getNombres() + " " + empleado.getApellidos());
         planilla.setId_categoria_planilla(empleado.getId_categoria());
         planilla.setAgnos_servicio(calcularAgnosDeServicio(empleado));
         planilla.setSueldo_fijo_mensual(calcularSueldoFijoMensual(empleado));

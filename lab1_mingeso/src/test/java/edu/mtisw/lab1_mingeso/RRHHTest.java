@@ -929,7 +929,7 @@ public class RRHHTest {
         
         PlanillaEntity planilla = rrhh.crearPlanilla(empleado, relojes, justificaciones, autorizaciones);
         assertEquals(empleado.getRut(), planilla.getRut_empleado_planilla());
-        assertEquals(empleado.getNombres() + empleado.getApellidos(), planilla.getNombre_completo());
+        assertEquals(empleado.getNombres() + " " + empleado.getApellidos(), planilla.getNombre_completo());
         assertEquals(empleado.getId_categoria(), planilla.getId_categoria_planilla());
         assertEquals(rrhh.calcularAgnosDeServicio(empleado), planilla.getAgnos_servicio());
         assertEquals(rrhh.calcularSueldoFijoMensual(empleado), planilla.getSueldo_fijo_mensual());

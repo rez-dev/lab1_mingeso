@@ -55,7 +55,7 @@ public class RelojService {
     }
 
     public String obtenerReloj() throws IOException{
-        FileReader fileReader = new FileReader("cargas/relojes/marcaRelojEmpleados.txt");
+        FileReader fileReader = new FileReader("cargas/relojes/DATA.txt");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String data = "";
         String i;
