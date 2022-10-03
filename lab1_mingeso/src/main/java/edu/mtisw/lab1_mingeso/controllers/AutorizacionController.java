@@ -23,7 +23,7 @@ public class AutorizacionController {
 
     @GetMapping("/home")
     public String home(){
-        return "/autorizaciones/homeAutorizacion";
+        return "autorizaciones/homeAutorizacion";
     }
 
     @GetMapping("/listar")

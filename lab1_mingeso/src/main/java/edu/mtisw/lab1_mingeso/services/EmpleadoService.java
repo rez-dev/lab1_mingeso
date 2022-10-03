@@ -20,4 +20,8 @@ public class EmpleadoService {
     public ArrayList<EmpleadoEntity> obtenerEmpleados(){
         return (ArrayList<EmpleadoEntity>) empleadoRepository.findAll();
     }
+
+    public void guardarEmpleado(EmpleadoEntity empleado) {
+        empleadoRepository.save(empleado);
+    }
 }

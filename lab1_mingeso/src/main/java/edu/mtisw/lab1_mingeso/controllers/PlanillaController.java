@@ -41,12 +41,12 @@ public class PlanillaController {
     public String listar(Model model){
         ArrayList<PlanillaEntity> planillas = planillaService.obtenerPlanillas();
         model.addAttribute("planillas",planillas);
-        return "/planillas/listadoPlanilla";
+        return "planillas/listadoPlanilla";
     }
 
     @GetMapping("/home")
     public String home(){
-        return "/planillas/homePlanilla";
+        return "planillas/homePlanilla";
     }
 
     @GetMapping("/calcularPlanillas")

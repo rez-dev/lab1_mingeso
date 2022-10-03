@@ -24,7 +24,7 @@ public class JustificacionController {
 
     @GetMapping("/home")
     public String home(){
-        return "/justificaciones/homeJustificacion";
+        return "justificaciones/homeJustificacion";
     }
 
     @GetMapping("/listar")

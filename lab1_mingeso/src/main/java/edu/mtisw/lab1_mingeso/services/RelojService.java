@@ -30,7 +30,7 @@ public class RelojService {
         relojRepository.deleteAll();
     }
 
-    private String folder = "cargas/relojes/";
+    private String folder = "/";
     private final Logger logg = LoggerFactory.getLogger(RelojService.class);
 
     public String save(MultipartFile file){
@@ -55,7 +55,7 @@ public class RelojService {
     }
 
     public String obtenerReloj() throws IOException{
-        FileReader fileReader = new FileReader("cargas/relojes/DATA.txt");
+        FileReader fileReader = new FileReader("/DATA.txt");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String data = "";
         String i;

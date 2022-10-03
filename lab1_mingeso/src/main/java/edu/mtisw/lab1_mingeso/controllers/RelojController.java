@@ -71,7 +71,7 @@ public class RelojController {
         // System.out.println(descuentoAtrasos);
         // System.out.println(montoHorasExtras);
         // System.out.println(montoAgnosServicio);
-        System.out.println("Sueldo Final " + sueldoFinal);
+        // System.out.println("Sueldo Final " + sueldoFinal);
         return "redirect:/reloj/subirReloj";
     }
 }

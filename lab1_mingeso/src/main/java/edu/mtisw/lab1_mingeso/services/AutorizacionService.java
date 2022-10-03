@@ -28,7 +28,7 @@ public class AutorizacionService {
         autorizacionRepository.save(autorizacion);
     }
 
-    private String folder = "cargas/autorizaciones/";
+    private String folder = "/";
     private final Logger logg = LoggerFactory.getLogger(RelojService.class);
 
     public String save(MultipartFile file){

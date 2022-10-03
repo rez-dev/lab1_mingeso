@@ -28,7 +28,7 @@ public class JustificacionService {
         justificacionRepository.save(justificacion);
     }
 
-    private String folder = "cargas/justificaciones/";
+    private String folder = "/";
     private final Logger logg = LoggerFactory.getLogger(RelojService.class);
 
     public String save(MultipartFile file){

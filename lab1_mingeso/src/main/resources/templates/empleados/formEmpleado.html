@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Ingreso de Empleados</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+  <div th:replace = "fragments/navbar :: navbar">
+  </div><br>
+  <div class="container-sm">
+    <h1 class="h1">Ingresar datos empleado</h1>
+  </div>
+    <div class="container-sm">
+        <!DOCTYPE HTML>
+        <html xmlns:th="http://www.thymeleaf.org">
+        <head> 
+            <title>Ingresar datos empleado</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        </head>
+        <body>
+            <form th:action = "@{/empleado/guardar}" th:object = ${empleado} method = "POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="rut">Rut</label>
+                <input th:field = "*{rut}" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese el rut fecha: 11.111.111-1">
+              </div><br>
+              <div class="form-group">
+                <label for="nombres">Nombres</label>
+                <input th:field = "*{nombres}" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese los nombres: Carlos Roberto">
+              </div><br>
+              <div class="form-group">
+                <label for="apellidos">Apellidos</label>
+                <input th:field = "*{apellidos}" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese los apellidos: Jara Roma">
+              </div><br>
+              <div class="form-group">
+                <label for="fecha_nacimiento">Fecha Nacimiento</label>
+                <input th:field = "*{fecha_nacimiento}" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese la fecha: 1990-10-10">
+              </div><br>
+              <div class="form-group">
+                <label for="fecha_ingreso_empresa">Fecha Ingreso Empresa</label>
+                <input th:field = "*{fecha_ingreso_empresa}" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese la fecha: 2005-10-10">
+              </div><br>
+              <div class="form-group">
+                <label for="id_categoria">ID Categoria</label>
+                <input th:field = "*{id_categoria}" type="number" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese el id categoria: 1">
+              </div><br>
+                <button type="submit" class="btn btn-primary">Cargar Datos</button>
+              </form>
+            </div>
+        </body>
+        </html>
+    </div>
+</body>
+</html>
